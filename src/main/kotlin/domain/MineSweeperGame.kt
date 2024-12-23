@@ -39,4 +39,10 @@ class MineSweeperGame(private val mineBoard: MineBoard) {
     private fun shouldAddAdjacentCells(cell: Cell): Boolean {
         return cell is Cell.EmptyCell && mineBoard.countAdjacentMines(cell) == 0
     }
+
+    fun getGameResult(): GameResult =
+        when {
+            mineBoard.isAllEmptyCellsOpened() -> GameResult.SUCCESS
+            else -> GameResult.FAILURE
+        }
 }
