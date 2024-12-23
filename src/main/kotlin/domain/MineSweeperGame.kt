@@ -22,7 +22,7 @@ class MineSweeperGame(private val mineBoard: MineBoard) {
         val current = queue.removeFirst()
         val cell = mineBoard.getCell(current)
 
-        if (shouldSkipCell(cell)) return
+        if (cell.isAlreadyOpened()) return
 
         mineBoard.openCell(current)
 
@@ -30,10 +30,6 @@ class MineSweeperGame(private val mineBoard: MineBoard) {
             val adjacentCoordinates = mineBoard.getAdjacentCoordinates(cell)
             queue.addAll(adjacentCoordinates)
         }
-    }
-
-    private fun shouldSkipCell(cell: Cell): Boolean {
-        return cell.status == CellStatus.OPEN
     }
 
     private fun shouldAddAdjacentCells(cell: Cell): Boolean {
