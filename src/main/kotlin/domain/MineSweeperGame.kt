@@ -10,7 +10,7 @@ class MineSweeperGame(private val mineBoard: MineBoard) {
     }
 
     fun openAdjacentCell(coordinate: Coordinate) {
-        val queue: ArrayDeque<Coordinate> = ArrayDeque()
+        val queue = ArrayDeque<Coordinate>()
         queue.add(coordinate)
 
         while (queue.isNotEmpty()) {
@@ -33,7 +33,7 @@ class MineSweeperGame(private val mineBoard: MineBoard) {
     }
 
     private fun shouldSkipCell(cell: Cell): Boolean {
-        return cell.isMineCell() || cell.status == CellStatus.OPEN
+        return cell.status == CellStatus.OPEN
     }
 
     private fun shouldAddAdjacentCells(cell: Cell): Boolean {
