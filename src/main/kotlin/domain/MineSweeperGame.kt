@@ -1,6 +1,6 @@
 package domain
 
-class MineSweeperGame(private val mineBoard: MineBoard, var result: GameResult = GameResult.FAILURE) {
+class MineSweeperGame(private val mineBoard: MineBoard) {
     fun isContinueGame(): Boolean {
         when {
             mineBoard.isAnyMineCellOpened() -> return false

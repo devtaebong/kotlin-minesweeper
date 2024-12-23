@@ -1,6 +1,7 @@
 package controller
 
 import domain.Cells
+import domain.GameResult
 import domain.MineBoard
 import domain.MineGameMetric
 import domain.MineSweeperGame
@@ -29,6 +30,6 @@ class MineSweeperController {
             mineSweeperGame.openAdjacentCell(coordinate)
             OutputView.showMineSweeperBoard(mineBoard)
         }
-        OutputView.showGameResult(mineSweeperGame.result)
+        OutputView.showGameResult(GameResult.SUCCESS)
     }
 }
