@@ -42,10 +42,7 @@ class MineBoard(
     }
 
     fun isAllEmptyCellsOpened(): Boolean {
-        val openedEmptyCellCount = cells.countOpenedEmptyCells()
-        val totalEmptyCellCount = cells.countEmptyCells()
-
-        return openedEmptyCellCount == totalEmptyCellCount
+        return cells.isAllEmptyCellsOpened()
     }
 
     fun openCell(coordinate: Coordinate) {

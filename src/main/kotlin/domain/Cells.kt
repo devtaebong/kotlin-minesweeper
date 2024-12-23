@@ -29,6 +29,13 @@ value class Cells(val cells: List<Cell>) {
         return emptyCells().size
     }
 
+    fun isAllEmptyCellsOpened(): Boolean {
+        val openedEmptyCellCount = countOpenedEmptyCells()
+        val totalEmptyCellCount = countEmptyCells()
+
+        return openedEmptyCellCount == totalEmptyCellCount
+    }
+
     companion object {
         fun generateWithMines(
             mineGameMetric: MineGameMetric,
