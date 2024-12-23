@@ -30,10 +30,6 @@ class MineSweeperGameTest : DescribeSpec({
             it("should be false") {
                 sut.isContinueGame().shouldBeFalse()
             }
-
-            it("result should be FAILURE") {
-                sut.result shouldBe GameResult.FAILURE
-            }
         }
 
         context("비어있는 모든 셀을 open 한 경우") {
@@ -54,11 +50,6 @@ class MineSweeperGameTest : DescribeSpec({
 
             it("should be false") {
                 sut.isContinueGame().shouldBeFalse()
-            }
-
-            it("game result should be success") {
-                sut.isContinueGame()
-                sut.result shouldBe GameResult.SUCCESS
             }
         }
 

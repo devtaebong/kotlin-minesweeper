@@ -4,10 +4,7 @@ class MineSweeperGame(private val mineBoard: MineBoard, var result: GameResult =
     fun isContinueGame(): Boolean {
         when {
             mineBoard.isAnyMineCellOpened() -> return false
-            mineBoard.isAllEmptyCellsOpened() -> {
-                result = GameResult.SUCCESS
-                return false
-            }
+            mineBoard.isAllEmptyCellsOpened() -> return false
         }
         return true
     }
