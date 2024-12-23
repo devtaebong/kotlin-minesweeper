@@ -4,13 +4,14 @@ import domain.Cell
 import domain.CellStatus
 import domain.GameResult
 import domain.MineBoard
+import domain.Row
 
 object OutputView {
     fun showMineSweeperBoard(board: MineBoard) {
         val cells = board.cells
-        val cellsByRow = cells.cells.groupBy { it.coordinate.row.value }
 
-        cellsByRow.toSortedMap().forEach { (_, rowCells) ->
+        val cellsByRow = cells.cells.groupBy { it.coordinate.row }
+        cellsByRow.toSortedMap(Row::compareTo).forEach { (_, rowCells) ->
             val sortedRow = rowCells.sortedBy { it.coordinate.col.value }
             sortedRow.forEach { cell ->
                 printCell(cell, board)
