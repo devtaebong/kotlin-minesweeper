@@ -8,9 +8,9 @@ import domain.strategy.MineCellGenerator
 
 @JvmInline
 value class Cells(val cells: List<Cell>) {
-    fun mineCells(): List<MineCell> = cells.filterIsInstance<MineCell>()
+    fun mineCells(): List<Cell> = cells.filter { it.isMineCell() }.toList()
 
-    fun emptyCells(): List<EmptyCell> = cells.filterIsInstance<EmptyCell>()
+    fun emptyCells(): List<Cell> = cells.filter { it.isMineCell().not() }.toList()
 
     fun get(coordinate: Coordinate): Cell {
         return cells.firstOrNull { it.coordinate == coordinate }
