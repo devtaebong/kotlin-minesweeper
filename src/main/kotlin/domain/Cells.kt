@@ -8,13 +8,32 @@ import domain.strategy.MineCellGenerator
 
 @JvmInline
 value class Cells(val cells: List<Cell>) {
-    fun mineCells(): List<MineCell> = cells.filterIsInstance<MineCell>()
+    fun mineCells(): List<Cell> = cells.filter { it.isMineCell() }.toList()
 
-    fun emptyCells(): List<EmptyCell> = cells.filterIsInstance<EmptyCell>()
+    fun emptyCells(): List<Cell> = cells.filter { it.isMineCell().not() }.toList()
 
-    fun getCoordinateIs(coordinate: Coordinate): Cell {
+    fun get(coordinate: Coordinate): Cell {
         return cells.firstOrNull { it.coordinate == coordinate }
             ?: throw NoSuchElementException("Coordinate $coordinate not found")
+    }
+
+    fun countOpenedMineCells(): Int {
+        return mineCells().count { it.status == CellStatus.OPEN }
+    }
+
+    fun countOpenedEmptyCells(): Int {
+        return emptyCells().count { it.status == CellStatus.OPEN }
+    }
+
+    fun countEmptyCells(): Int {
+        return emptyCells().size
+    }
+
+    fun isAllEmptyCellsOpened(): Boolean {
+        val openedEmptyCellCount = countOpenedEmptyCells()
+        val totalEmptyCellCount = countEmptyCells()
+
+        return openedEmptyCellCount == totalEmptyCellCount
     }
 
     companion object {
@@ -42,7 +61,7 @@ value class Cells(val cells: List<Cell>) {
 
             return heightRange.flatMap { height ->
                 widthRange.map { width ->
-                    Coordinate(Row(height), Col(width))
+                    Coordinate(height, width)
                 }
             }
         }
@@ -51,7 +70,10 @@ value class Cells(val cells: List<Cell>) {
             mineCellGenerator: MineCellGenerator,
             mineGameMetric: MineGameMetric,
         ): Set<Coordinate> {
-            return mineCellGenerator.execute(mineGameMetric).map { it.coordinate }.toSet()
+            val mineCell = mineCellGenerator.execute(mineGameMetric)
+            return mineCell
+                .map { it.coordinate }
+                .toSet()
         }
 
         private fun parseCell(
