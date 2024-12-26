@@ -9,7 +9,7 @@ class MineSweeperMetricTest : DescribeSpec({
         context("높이가 1보다 작은 경우") {
             it("should throw exception") {
                 shouldThrow<IllegalArgumentException> {
-                    MineSweeperMetric(row = 0, col = 10, mineCount = 10)
+                    MineSweeperMetric(mineBoardHeight = 0, mineBoardWidth = 10, mineCount = 10)
                 }
             }
         }
@@ -17,7 +17,7 @@ class MineSweeperMetricTest : DescribeSpec({
         context("높이가 1이상인 경우") {
             it("should not throw exception") {
                 shouldNotThrow<IllegalArgumentException> {
-                    MineSweeperMetric(row = 1, col = 10, mineCount = 10)
+                    MineSweeperMetric(mineBoardHeight = 1, mineBoardWidth = 10, mineCount = 10)
                 }
             }
         }
@@ -25,7 +25,7 @@ class MineSweeperMetricTest : DescribeSpec({
         context("너비가 1보다 작은 경우") {
             it("should throw exception") {
                 shouldThrow<IllegalArgumentException> {
-                    MineSweeperMetric(row = 10, col = 0, mineCount = 10)
+                    MineSweeperMetric(mineBoardHeight = 10, mineBoardWidth = 0, mineCount = 10)
                 }
             }
         }
@@ -33,7 +33,7 @@ class MineSweeperMetricTest : DescribeSpec({
         context("너비가 1이상인 경우") {
             it("should not throw exception") {
                 shouldNotThrow<IllegalArgumentException> {
-                    MineSweeperMetric(row = 10, col = 1, mineCount = 10)
+                    MineSweeperMetric(mineBoardHeight = 10, mineBoardWidth = 1, mineCount = 10)
                 }
             }
         }
@@ -41,7 +41,7 @@ class MineSweeperMetricTest : DescribeSpec({
         context("지뢰 개수가 1보다 작은 경우") {
             it("should throw exception") {
                 shouldThrow<IllegalArgumentException> {
-                    MineSweeperMetric(row = 10, col = 10, mineCount = 0)
+                    MineSweeperMetric(mineBoardHeight = 10, mineBoardWidth = 10, mineCount = 0)
                 }
             }
         }
@@ -49,7 +49,7 @@ class MineSweeperMetricTest : DescribeSpec({
         context("지뢰 개수가 1이상인 경우") {
             it("should not throw exception") {
                 shouldNotThrow<IllegalArgumentException> {
-                    MineSweeperMetric(row = 10, col = 1, mineCount = 10)
+                    MineSweeperMetric(mineBoardHeight = 10, mineBoardWidth = 1, mineCount = 10)
                 }
             }
         }
@@ -57,7 +57,7 @@ class MineSweeperMetricTest : DescribeSpec({
         context("지뢰 개수가 전체 칸보다 많은 경우") {
             it("should throw exception") {
                 shouldThrow<IllegalArgumentException> {
-                    MineSweeperMetric(row = 2, col = 2, mineCount = 5)
+                    MineSweeperMetric(mineBoardHeight = 2, mineBoardWidth = 2, mineCount = 5)
                 }
             }
         }
@@ -65,7 +65,7 @@ class MineSweeperMetricTest : DescribeSpec({
         context("지뢰 개수가 전체 칸보다 적은 경우") {
             it("should throw exception") {
                 shouldNotThrow<IllegalArgumentException> {
-                    MineSweeperMetric(row = 2, col = 2, mineCount = 1)
+                    MineSweeperMetric(mineBoardHeight = 2, mineBoardWidth = 2, mineCount = 1)
                 }
             }
         }
