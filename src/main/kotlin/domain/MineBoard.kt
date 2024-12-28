@@ -53,4 +53,8 @@ class MineBoard(private val cells: Cells) {
                 Col(MINIMUM_WIDTH) <= coordinate.col && coordinate.col <= cells.getBoardWidth()
         ).not()
     }
+
+    fun cellsByRow(): Map<Row, List<Cell>> {
+        return cells.groupByRow()
+    }
 }

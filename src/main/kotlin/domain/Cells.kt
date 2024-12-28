@@ -31,6 +31,10 @@ value class Cells(private val cells: List<Cell>) {
         return cells.maxBy { it.coordinate.col }.coordinate.col
     }
 
+    fun groupByRow(): Map<Row, List<Cell>> {
+        return cells.groupBy { it.coordinate.row }
+    }
+
     companion object {
         fun of(mineCellGenerator: MineCellGenerator): Cells {
             val mineCells = mineCellGenerator.execute()

@@ -2,10 +2,12 @@ package controller
 
 import domain.Cells
 import domain.MineBoard
+import domain.MineSweeperGame
 import domain.MineSweeperMetric
 import domain.strategy.MineCellGenerator
 import domain.strategy.RandomMineCellGenerator
 import view.InputView
+import view.OutputView
 
 class MineSweeperController {
     fun run() {
@@ -14,7 +16,21 @@ class MineSweeperController {
         val cells = Cells.of(mineCellGenerator)
         val mineBoard = MineBoard(cells)
 
-        val requestOpenCoordinate = InputView.askMineCoordinate()
+        OutputView.showMineSweeperBoard(mineBoard)
+
+        gameLoop(mineBoard)
+    }
+
+    private fun gameLoop(mineBoard: MineBoard) {
+        val mineSweeperGame = MineSweeperGame(mineBoard)
+        while (mineSweeperGame.isContinueGame()) {
+            val requestOpenCoordinate = InputView.askMineCoordinate()
+            mineSweeperGame.openAdjacentCell(requestOpenCoordinate)
+            OutputView.showMineSweeperBoard(mineBoard)
+        }
+
+        val result = mineSweeperGame.getGameResult()
+        OutputView.showGameResult(result)
     }
 
     private fun initializeMineSweeperMetric(): MineSweeperMetric {
