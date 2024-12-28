@@ -8,6 +8,10 @@ sealed interface Cell {
 
     fun open()
 
+    fun isAlreadyOpened(): Boolean {
+        return status == CellStatus.OPEN
+    }
+
     class MineCell(
         override val coordinate: Coordinate,
         private var _status: CellStatus = CellStatus.CLOSED,

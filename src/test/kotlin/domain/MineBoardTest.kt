@@ -35,8 +35,7 @@ class MineBoardTest : DescribeSpec({
             }
 
             it("should be true") {
-                sut.hasMineExploded()
-                    .shouldBeTrue()
+                sut.hasMineExploded().shouldBeTrue()
             }
         }
 
@@ -97,6 +96,27 @@ class MineBoardTest : DescribeSpec({
             it("should be false") {
                 sut.isCleared() shouldBe false
             }
+        }
+    }
+
+    describe("getAdjacentCoordinates test") {
+        it("인접한 셀의 좌표를 리턴한다.") {
+            val cellList =
+                listOf(
+                    Cell.EmptyCell(Coordinate(1, 1), CellStatus.CLOSED),
+                    Cell.EmptyCell(Coordinate(1, 2), CellStatus.CLOSED),
+                    Cell.EmptyCell(Coordinate(1, 3), CellStatus.CLOSED),
+                    Cell.EmptyCell(Coordinate(2, 1), CellStatus.CLOSED),
+                    Cell.EmptyCell(Coordinate(2, 2), CellStatus.CLOSED),
+                    Cell.EmptyCell(Coordinate(2, 3), CellStatus.CLOSED),
+                    Cell.EmptyCell(Coordinate(3, 1), CellStatus.CLOSED),
+                    Cell.EmptyCell(Coordinate(3, 2), CellStatus.CLOSED),
+                    Cell.MineCell(Coordinate(3, 3), CellStatus.CLOSED),
+                )
+            val cells = Cells(cellList)
+            val sut = MineBoard(cells)
+            val actual = sut.getAdjacentCoordinates(cellList[0])
+            actual.size shouldBe 3
         }
     }
 })
