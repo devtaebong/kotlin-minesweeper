@@ -3,11 +3,11 @@ package domain
 class MineBoard(private val cells: Cells) {
     fun cellsSize() = cells.numberOfTotalCells()
 
-    fun isAnyMineCellOpened(): Boolean {
-        TODO("Not yet implemented")
+    fun hasMineExploded(): Boolean {
+        return cells.isAnyMineCellOpened()
     }
 
-    fun isAllEmptyCellsOpened(): Boolean {
-        TODO("Not yet implemented")
+    fun isCleared(): Boolean {
+        return cells.isAllEmptyCellsOpened()
     }
 }
