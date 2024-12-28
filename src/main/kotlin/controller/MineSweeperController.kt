@@ -5,9 +5,10 @@ import view.InputView
 
 class MineSweeperController {
     fun run() {
+        val mineSweeperMetric = initializeMineSweeperMetric()
     }
 
-    private fun inputMineSweeperMetric(): MineSweeperMetric {
+    private fun initializeMineSweeperMetric(): MineSweeperMetric {
         val mineBoardHeight = InputView.inputMineBoardHeight()
         val mineBoardWidth = InputView.inputMineBoardWidth()
         val mineCount = InputView.inputMineCount()
