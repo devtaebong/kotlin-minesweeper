@@ -1,5 +1,9 @@
 package view
 
+import domain.Col
+import domain.Coordinate
+import domain.Row
+
 object InputView {
     fun inputMineBoardHeight(): Int {
         println("높이를 입력하세요.")
@@ -22,6 +26,20 @@ object InputView {
     private fun parseToGameMetricOrThrow(value: String): Int {
         val intValue = value.toIntOrNull() ?: throw IllegalArgumentException(INVALID_INPUT)
         return intValue
+    }
+
+    fun askMineCoordinate(): Coordinate {
+        println("지뢰찾기 게임 시작")
+        print("open: ")
+        return parseToCoordinateOrThrow(readln())
+    }
+
+    private fun parseToCoordinateOrThrow(value: String): Coordinate {
+        return value.replace(" ", "")
+            .split(",")
+            .also { require(it.size == 2) { INVALID_COORDINATE + value } }
+            .map { it.toIntOrNull() ?: throw IllegalArgumentException(INVALID_COORDINATE) }
+            .let { (row, col) -> Coordinate(Row(row), Col(col)) }
     }
 
     private const val INVALID_INPUT = "숫자만 입력할 수 있습니다."

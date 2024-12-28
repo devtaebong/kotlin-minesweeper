@@ -13,6 +13,8 @@ class MineSweeperController {
         val mineCellGenerator: MineCellGenerator = RandomMineCellGenerator(mineSweeperMetric)
         val cells = Cells.of(mineCellGenerator)
         val mineBoard = MineBoard(cells)
+
+        val requestOpenCoordinate = InputView.askMineCoordinate()
     }
 
     private fun initializeMineSweeperMetric(): MineSweeperMetric {
