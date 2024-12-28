@@ -1,5 +1,6 @@
 package domain
 
+import domain.strategy.RandomMineCellGenerator
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
@@ -10,13 +11,7 @@ class MineBoardTest : DescribeSpec({
 
         context("row x col = cell.size()") {
             it("should be true") {
-                val cells =
-                    Cells(
-                        listOf(
-                            Cell.EmptyCell(Coordinate(1, 1)),
-                            Cell.MineCell(Coordinate(1, 2)),
-                        ),
-                    )
+                val cells = Cells.of(RandomMineCellGenerator(mineSweeperMetric))
                 val sut = MineBoard(cells)
                 sut.cellsSize() shouldBe 9
             }
