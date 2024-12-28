@@ -6,6 +6,8 @@ sealed interface Cell {
 
     fun isMineCell(): Boolean
 
+    fun open()
+
     class MineCell(
         override val coordinate: Coordinate,
         private var _status: CellStatus = CellStatus.CLOSED,
@@ -14,6 +16,10 @@ sealed interface Cell {
             get() = _status
 
         override fun isMineCell(): Boolean = true
+
+        override fun open() {
+            _status = CellStatus.OPEN
+        }
     }
 
     class EmptyCell(
@@ -24,5 +30,9 @@ sealed interface Cell {
             get() = _status
 
         override fun isMineCell(): Boolean = false
+
+        override fun open() {
+            _status = CellStatus.OPEN
+        }
     }
 }
