@@ -18,6 +18,19 @@ value class Cells(private val cells: List<Cell>) {
             .all { it.status == CellStatus.OPEN }
     }
 
+    fun get(coordinate: Coordinate): Cell {
+        return cells.firstOrNull { it.coordinate == coordinate }
+            ?: throw NoSuchElementException("Coordinate $coordinate not found")
+    }
+
+    fun getBoardHeight(): Row {
+        return cells.maxBy { it.coordinate.row }.coordinate.row
+    }
+
+    fun getBoardWidth(): Col {
+        return cells.maxBy { it.coordinate.col }.coordinate.col
+    }
+
     companion object {
         fun of(mineCellGenerator: MineCellGenerator): Cells {
             val mineCells = mineCellGenerator.execute()
