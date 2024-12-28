@@ -1,7 +1,13 @@
 package domain
 
 sealed interface Cell {
-    class MineCell(private val coordinate: Coordinate) : Cell
+    fun isMineCell(): Boolean
 
-    class EmptyCell(private val coordinate: Coordinate) : Cell
+    class MineCell(private val coordinate: Coordinate) : Cell {
+        override fun isMineCell(): Boolean = true
+    }
+
+    class EmptyCell(private val coordinate: Coordinate) : Cell {
+        override fun isMineCell(): Boolean = false
+    }
 }
