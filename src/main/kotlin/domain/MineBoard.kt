@@ -1,11 +1,5 @@
 package domain
 
-class MineBoard private constructor(private val cell: List<Cell>) {
+class MineBoard(private val cells: Cells) {
     fun cellsSize() = 9
-
-    companion object {
-        fun of(mineSweeperMetric: MineSweeperMetric): MineBoard {
-            return MineBoard(emptyList())
-        }
-    }
 }

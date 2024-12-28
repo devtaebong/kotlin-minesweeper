@@ -10,7 +10,14 @@ class MineBoardTest : DescribeSpec({
 
         context("row x col = cell.size()") {
             it("should be true") {
-                val sut = MineBoard.of(mineSweeperMetric)
+                val cells =
+                    Cells(
+                        listOf(
+                            Cell.EmptyCell(Coordinate(1, 1)),
+                            Cell.MineCell(Coordinate(1, 2)),
+                        ),
+                    )
+                val sut = MineBoard(cells)
                 sut.cellsSize() shouldBe 9
             }
         }
