@@ -145,8 +145,8 @@ class MineSweeperGameTest : DescribeSpec({
 
                 mineBoard = MineBoard(cells)
                 sut = MineSweeperGame(mineBoard)
-//                val actual = sut.getGameResult()
-//                actual shouldBe GameResult.SUCCESS
+                val actual = sut.getGameResult()
+                actual shouldBe GameResult.SUCCESS
             }
         }
     }
