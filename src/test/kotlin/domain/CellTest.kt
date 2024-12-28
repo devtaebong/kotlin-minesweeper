@@ -3,6 +3,7 @@ package domain
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.shouldBe
 
 class CellTest : DescribeSpec({
     describe("isMineCell test") {
@@ -16,6 +17,13 @@ class CellTest : DescribeSpec({
             it("should be false") {
                 Cell.EmptyCell(Coordinate(1, 1)).isMineCell().shouldBeFalse()
             }
+        }
+    }
+
+    describe("셀은 open 또는 closed 상태를 갖는다.") {
+        it("처음 초기화 된 셀의 상태는 Closed 이다") {
+            Cell.MineCell(Coordinate(1, 1)).status shouldBe CellStatus.CLOSED
+            Cell.EmptyCell(Coordinate(1, 1)).status shouldBe CellStatus.CLOSED
         }
     }
 })
