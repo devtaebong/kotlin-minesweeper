@@ -1,13 +1,13 @@
 package view
 
 object InputView {
-    fun inputRowSize(): Int {
+    fun inputMineBoardHeight(): Int {
         println("높이를 입력하세요.")
         val input = parseToGameMetricOrThrow(readln())
         return input
     }
 
-    fun inputColumnSize(): Int {
+    fun inputMineBoardWidth(): Int {
         println("너비를 입력하세요.")
         val input = parseToGameMetricOrThrow(readln())
         return input
