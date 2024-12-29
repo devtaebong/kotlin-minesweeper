@@ -93,7 +93,7 @@ class CellsTest : DescribeSpec({
                     ),
                 )
 
-            sut.getBoardHeight() shouldBe Row(30)
+            sut.height shouldBe Row(30)
         }
     }
 
@@ -108,7 +108,7 @@ class CellsTest : DescribeSpec({
                     ),
                 )
 
-            sut.getBoardWidth() shouldBe Col(300)
+            sut.width shouldBe Col(300)
         }
     }
 })

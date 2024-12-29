@@ -49,8 +49,8 @@ class MineBoard(private val cells: Cells) {
 
     private fun isOutOfMineBoard(coordinate: Coordinate): Boolean {
         return (
-            Row(MINIMUM_HEIGHT) <= coordinate.row && coordinate.row <= cells.getBoardHeight() &&
-                Col(MINIMUM_WIDTH) <= coordinate.col && coordinate.col <= cells.getBoardWidth()
+            Row(MINIMUM_HEIGHT) <= coordinate.row && coordinate.row <= cells.height &&
+                Col(MINIMUM_WIDTH) <= coordinate.col && coordinate.col <= cells.width
         ).not()
     }
 

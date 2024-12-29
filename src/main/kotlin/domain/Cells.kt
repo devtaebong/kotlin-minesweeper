@@ -4,6 +4,11 @@ import domain.strategy.MineCellGenerator
 
 @JvmInline
 value class Cells(private val cells: List<Cell>) {
+    val height: Row
+        get() = cells.maxBy { it.coordinate.row }.coordinate.row
+    val width: Col
+        get() = cells.maxBy { it.coordinate.col }.coordinate.col
+
     fun numberOfTotalCells(): Int = cells.size
 
     fun isAnyMineCellOpened(): Boolean {
@@ -21,14 +26,6 @@ value class Cells(private val cells: List<Cell>) {
     fun get(coordinate: Coordinate): Cell {
         return cells.firstOrNull { it.coordinate == coordinate }
             ?: throw NoSuchElementException("Coordinate $coordinate not found")
-    }
-
-    fun getBoardHeight(): Row {
-        return cells.maxBy { it.coordinate.row }.coordinate.row
-    }
-
-    fun getBoardWidth(): Col {
-        return cells.maxBy { it.coordinate.col }.coordinate.col
     }
 
     fun groupByRow(): Map<Row, List<Cell>> {
