@@ -9,7 +9,7 @@ value class Cells(private val cells: List<Cell>) {
     fun isAnyMineCellOpened(): Boolean {
         return cells
             .filter { it.isMineCell() }
-            .any { it.status == CellStatus.OPEN }
+            .any { it.isOpened() }
     }
 
     fun isAllEmptyCellsOpened(): Boolean {

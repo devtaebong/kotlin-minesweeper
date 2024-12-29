@@ -22,7 +22,7 @@ class MineSweeperGame(private val mineBoard: MineBoard) {
         val current = queue.removeFirst()
         val cell = mineBoard.getCell(current)
 
-        if (cell.isAlreadyOpened()) return
+        if (cell.isOpened()) return
 
         mineBoard.openCell(current)
 

@@ -8,7 +8,7 @@ sealed interface Cell {
 
     fun open()
 
-    fun isAlreadyOpened(): Boolean {
+    fun isOpened(): Boolean {
         return status == CellStatus.OPEN
     }
 
