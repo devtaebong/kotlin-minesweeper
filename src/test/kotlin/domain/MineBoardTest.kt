@@ -5,6 +5,7 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.shouldBeSameInstanceAs
 
 class MineBoardTest : DescribeSpec({
     describe("`MineSweeperMetric`으로 `MineBoard`를 생성한다.") {
@@ -96,6 +97,52 @@ class MineBoardTest : DescribeSpec({
             it("should be false") {
                 sut.isCleared() shouldBe false
             }
+        }
+    }
+
+    describe("openCell test.") {
+        lateinit var cellList: List<Cell>
+        lateinit var sut: MineBoard
+
+        beforeTest {
+            cellList =
+                listOf(
+                    Cell.MineCell(
+                        Coordinate(1, 1),
+                    ),
+                    Cell.EmptyCell(
+                        Coordinate(1, 2),
+                    ),
+                )
+            sut = MineBoard(Cells(cellList))
+        }
+
+        it("좌표의 셀을 open 한다.") {
+            sut.openCell(Coordinate(1, 1))
+            cellList[0].status shouldBe CellStatus.OPEN
+        }
+    }
+
+    describe("getCell test") {
+        lateinit var cellList: List<Cell>
+        lateinit var sut: MineBoard
+
+        beforeTest {
+            cellList =
+                listOf(
+                    Cell.MineCell(
+                        Coordinate(1, 1),
+                    ),
+                    Cell.EmptyCell(
+                        Coordinate(1, 2),
+                    ),
+                )
+            sut = MineBoard(Cells(cellList))
+        }
+
+        it("좌표에 해당하는 셀을 조회한다.") {
+            val actual = sut.getCell(Coordinate(1, 1))
+            actual shouldBeSameInstanceAs cellList[0]
         }
     }
 
