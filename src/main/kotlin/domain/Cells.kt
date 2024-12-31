@@ -20,7 +20,7 @@ value class Cells(private val cells: List<Cell>) {
     fun isAllEmptyCellsOpened(): Boolean {
         return cells
             .filter { it.isMineCell().not() }
-            .all { it.status == CellStatus.OPEN }
+            .all { it.isOpened() }
     }
 
     fun get(coordinate: Coordinate): Cell {
