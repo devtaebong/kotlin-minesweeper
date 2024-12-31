@@ -8,12 +8,12 @@ import domain.MineSweeperMetric
 import kotlin.random.Random
 
 class RandomMineCellGenerator(private val mineSweeperMetric: MineSweeperMetric) : MineCellGenerator {
-    override fun execute(): Set<Cell> {
+    override fun execute(): List<Cell> {
         val emptyCellCoordinates = createEmptyCells()
         val mineCellCoordinates = createMineCoordinate()
 
         val cells = emptyCellCoordinates.map { coordinate -> parseCell(mineCellCoordinates, coordinate) }
-        return cells.toSet()
+        return cells
     }
 
     private fun createEmptyCells(): Set<Coordinate> {
